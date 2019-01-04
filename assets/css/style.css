@@ -46,6 +46,79 @@ h3 {
     padding-left: 35%;
 }
 
-.card-title {
+@media all and (max-width: 992px) {
+
+.gameTitle {
+    text-align: right;
     color: black;
+    font-size: 56px;
+    font-family: "Henny Penny", cursive;
+    }
+
+.card-title {
+    color: #ffffff;
+    }
+
+#winner, #loser {
+    text-align: center;
+    color: rgb(41, 20, 20);
+    font-size: 42px;
+    padding-left: 35%;
+    }
+}
+
+@media all and (max-width: 772px) {
+
+.gameTitle {
+    text-align: right;
+    color: black;
+    font-size: 42px;
+    font-family: "Henny Penny", cursive;
+    }
+
+.card-title {
+    color: #ffffff;
+    }
+
+#winner, #loser {
+    text-align: center;
+    color: rgb(41, 20, 20);
+    font-size: 36px;
+    padding-left: 35%;
+    }
+}
+
+@media all and (max-width: 556px) {
+
+.gameTitle {
+    text-align: center;
+    color: black;
+    width: 100%;
+    font-size: 24px;
+    font-family: "Henny Penny", cursive;
+    }
+
+.card-title {
+    color: #ffffff;
+    }
+
+#winner, #loser {
+    text-align: center;
+    color: rgb(41, 20, 20);
+    font-size: 18px;
+    padding-left: 0%;
+    }
+
+#hold {
+    text-align: center;
+    padding-left: 0%;
+    }
+
+.card {
+    float: none;
+    margin: 0 auto;
+    width: 100%;
+    bottom: 70px;
+    right: 10px;
+    }
 }
