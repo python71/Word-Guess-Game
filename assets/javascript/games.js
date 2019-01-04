@@ -48,6 +48,7 @@ $(document).ready(function () {
         underscore(randomWord);
         theme.play();
         theme.volume = 0.2;
+        // mobile virtual keyboard
         $("#hold").focus();
         console.log(randomWord);
         userGuesses =  randomWord.length + 3;
