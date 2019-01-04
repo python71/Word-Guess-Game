@@ -78,15 +78,10 @@ $(document).ready(function () {
                         wins++;
                         $("#winner").show("WINNER");
                         $(".wins").text(wins)
-                        theme.pause();
                         winnerAudio.play();
-
-                        // Hides loser banner after 4 seconds
                         setTimeout(function () {
-                            $("#winner").hide();
-                            theme.play()
-                         },
-                            4000);
+                            $("#winner").hide(); },
+                            3000);
 
                         // Resets variables and calls for a new word
                         lettersGuessed = [];
@@ -94,7 +89,6 @@ $(document).ready(function () {
                         randomWordGenerator(farmWords);
                         underscore(randomWord);
                         userGuesses = randomWord.length + 3;
-                        console.log(randomWord); 
                     }
                 }
             }
@@ -103,7 +97,7 @@ $(document).ready(function () {
             else {
 
                 if (lettersGuessed.includes(userLetter) == true) {                
-                    console.log("duplicate letter " + userLetter)
+                    // console.log("duplicate letter " + userLetter)
                 }
 
                 else {
@@ -117,15 +111,13 @@ $(document).ready(function () {
                         losses++;
                         $(".losses").text(losses);
                         $("#loser").show();
-                        theme.pause();
                         loserAudio.play();
 
-                        // Hides loser banner after 4 seconds
+                        // Hides loser banner after 3 seconds
                         setTimeout(function () {
                             $("#loser").hide();
-                            theme.play()
                         },
-                            4000);
+                            3000);
                         
                         // Resets variables and calls for a new word
                         lettersGuessed = [];
