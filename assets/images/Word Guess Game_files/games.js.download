@@ -1,0 +1,150 @@
+// JavaScript function that wraps everything
+$(document).ready(function () {
+
+    // set variables
+    var farmWords = ["dung", "heifer", "milking", "calf", "manure", "cows", "bovine", "frith", "calves", "milk", "pasture", "goat", "herd", "cutler", "urine", "chicken", "pig", "dairy", "pastures", "barn", "sheep", "cattle", "fallow", "farm", "farmer", "farmhouse", "feed", "fence", "fertilizer", "field", "flock", "foal", "food", "fruit", "harvest", "harvester", "hatchery", "hay", "haystack", "hen", "herd", "hive", "hoe", "hog", "honey", "honeybee", "poo"];
+
+    var wins = 0;
+    var losses = 0;
+    var lettersGuessed = [];
+    var hiddenWord = [];
+    var userGuesses;
+    let yahoo = new Audio("assets/sounds/Rooster.mp3")
+    let cows = new Audio("assets/sounds/moo.mp3")
+    let docLettersUsed = document.getElementsByClassName("lettersUsed");
+    
+
+    // Hides the winning and losing divs
+    $("#winner").hide();
+    $("#loser").hide();
+
+    // Generate a random word from the farm Words array
+    let randomWordGenerator = function() {
+        randomWord = farmWords[Math.floor(Math.random() * farmWords.length)];
+        return randomWord
+    }
+
+    // Generates the underscores for the letters in the randon farm word
+    let underscore = function(randomWord) {
+        hiddenWord = [];
+        document.getElementById("test").innerHTML = '';
+
+        for (let i = 0; i < randomWord.length; i++) {
+            hiddenWord[i] = "_";
+        }   
+        
+        var underscoredWord = hiddenWord.join(" ");
+        document.getElementById("test").innerHTML = underscoredWord; 
+    
+        return randomWord, hiddenWord
+    }
+
+    // Game begins on a click of div
+    $("strong").on("click", function () {
+        randomWordGenerator(farmWords);
+        underscore(randomWord);
+        console.log(randomWord);
+        userGuesses =  randomWord.length + 3;
+        console.log(userGuesses);
+
+        // Records the letter from the user and converts to lowerCase
+        document.addEventListener("keypress", function (event) {
+            let userLetter = String.fromCharCode(event.keyCode).toLowerCase();
+            
+            // Testing
+            console.log(userLetter);
+
+            // looking for good letters
+            if (randomWord.indexOf(userLetter) > -1) {
+                
+                // Testing
+                // console.log(true);
+                if (lettersGuessed.includes(userLetter) == true) {
+                    // console.log("duplicate letter " + userLetter)
+                }
+
+                else {
+                    // console.log('good letter')
+
+                    // loop through current word and verify user good letter
+                    // and display to the screen
+                    for (var i = 0; i < randomWord.length; i++) {
+                        if (randomWord[i] === userLetter) {
+                            hiddenWord[i] = userLetter;
+                        }
+                    document.getElementById("test").innerHTML = hiddenWord.join(" ");
+                    }
+
+                    // Declares a winner
+                    if (randomWord === hiddenWord.join("")) {
+                        wins++;
+                        $("#winner").show("WINNER");
+                        $(".wins").text(wins)
+                        console.log("wins: ", wins)
+                        yahoo.play();
+                        setTimeout(function () {
+                            $("#winner").hide(); },
+                            3000);
+
+                        // Resets variables and calls for a new word
+                        userGuesses = 0;
+                        lettersGuessed = [];
+                        docLettersUsed[0].innerHTML = lettersGuessed;
+                        randomWordGenerator(farmWords);
+                        underscore(randomWord);
+                        userGuesses = randomWord.length + 3;
+                        console.log(randomWord); 
+                    }
+                    // }
+                }
+            }
+
+            // looking for wrong letter pressed
+            else {
+                // Testing
+                console.log(false)
+                console.log(lettersGuessed.includes(userLetter))
+                if (lettersGuessed.includes(userLetter) == true) {                
+                    // console.log("duplicate letter " + userLetter)
+                }
+
+                else {
+                    lettersGuessed.push(userLetter);
+                    console.log('bad letter');
+                    docLettersUsed[0].innerHTML = lettersGuessed;
+                    console.log(randomWord.length);
+                    userGuesses--;
+                    $(".guesses").text(userGuesses);
+                    console.log(userGuesses);
+
+                    // Declares a loser
+                    if (userGuesses === 0) {
+                        losses++;
+                        $(".losses").text(losses);
+                        console.log('gameover');
+                        $("#loser").show();
+                        cows.play();
+
+                        // Hides loser banner after 3 seconds
+                        setTimeout(function () {
+                            $("#loser").hide();
+                        },
+                            3000);
+                        
+                        // Resets variables and calls for a new word
+                        lettersGuessed = [];
+                        docLettersUsed[0].innerHTML = lettersGuessed;
+                        randomWordGenerator(farmWords);
+                        underscore(randomWord);
+                        userGuesses = randomWord.length + 3;
+                        console.log(randomWord);
+                    }
+                }
+
+            }
+
+        })   
+    })
+
+});
+

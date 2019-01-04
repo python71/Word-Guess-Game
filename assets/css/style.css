@@ -1,0 +1,51 @@
+body {
+    background-image: url('../images/harry-potter.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top right; 
+    height: 100vh;
+    position: relative;
+}
+
+.gameTitle {
+    text-align: right;
+    color: black;
+    font-size: 72px;
+    font-family: "Henny Penny", cursive;
+}
+
+#winner, #loser {
+    text-align: center;
+    color: rgb(41, 20, 20);
+    font-size: 56px;
+    padding-left: 35%;
+}
+
+h3 {
+    text-align: center;  
+    color: black;
+}
+
+.jumbotron, .card {
+    background: none;
+    color: #ffffff;
+    font-family: "Henny Penny", cursive;
+}
+
+.card {
+    float: right;
+    position: absolute;
+    bottom: 70px;
+    right: 10px;
+}
+
+#hold {
+    text-align: center;
+    color: black;
+    font-family: "Henny Penny", cursive;
+    padding-left: 35%;
+}
+
+.card-title {
+    color: black;
+}
